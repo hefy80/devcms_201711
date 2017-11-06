@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>外部bug</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-eye-open"></i>
+							</span>
+							<h5>质量</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>年</th>
+										<th>月</th>
+										<th width="24%">分组</th>
+										<th>未确定</th>
+										<th width="24%">未确定列表</th>
+										<th>已确定</th>
+										<th width="24%">已确定列表</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$y = $m = 0;
+										foreach ($Bugs as $k => $v){
+											foreach ($v['stat'] as $km => $vm){
+												foreach ($vm['stat'] as $kn => $vn){
+													echo "<tr>";
+													if ($y != $k){
+														$y = $k;
+														echo "<td rowspan=\"".$v['count']."\">".$k."</td>"; //年
+													}
+													if ($m != $km){
+														$m = $km;
+														echo "<td rowspan=\"".$vm['count']."\">".$km."</td>"; //月
+													}
+													echo "<td>".$kn."</td>";
+													echo "<td>".($vn['nobug'] ? $vn['nobug'] : 0)."</td>";
+													echo "<td>";
+													foreach ($vn['nobuglist'] as $kb => $vb){
+														echo "<a href=\"http://192.168.92.177/zentao/story-view-".$vb.".html\" target=\"_blank\">".$vb."</a> ";
+													}
+													echo "</td>";
+													echo "<td><b>".($vn['bug'] ? $vn['bug'] : 0)."</b></td>";
+													echo "<td>";
+													foreach ($vn['buglist'] as $kb => $vb){
+														echo "<a href=\"http://192.168.92.177/zentao/story-view-".$vb.".html\" target=\"_blank\">".$vb."</a> ";
+													}
+													echo "</td>";
+													echo "</tr>";
+												}
+											}
+										}
+									?>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

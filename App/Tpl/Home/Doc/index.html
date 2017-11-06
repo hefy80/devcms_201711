@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>文档</h1>
+			</div>
+			<div id="breadcrumb">
+				<i class="icon-home"></i>
+				<?php
+					foreach ($node['forefather'] as $k=>$v)
+					{
+						$path=urlencode(base64_encode($v['path']));
+						echo "<a href=\"__APP__/Doc/index?path=".$path."\" class=\"current\">".$v['name']."</a>";
+					}
+				?>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="widget-box">
+							<div class="widget-title">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#tab1">list</a></li>
+                                    <li><a data-toggle="tab" href="#tab2">svn log</a></li>
+                                </ul>
+							</div>
+							<div class="widget-content tab-content">
+								<div id="tab1" class="tab-pane active">
+									<table class="table table-bordered data-table">
+										<thead>
+											<tr>
+												<th>名字</th>
+												<th>简述</th>
+												<th>更新时间</th>
+												<th>下级数量</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php
+											foreach ($node['children'] as $k=>$v)
+											{
+												$path = urlencode(base64_encode($v['path']));
+												$icon = ($v['type']=='file') ? 'icon-file' : 'icon-folder-open';
+
+												//只展示目录和md文件
+												$ext = substr(strrchr($k,'.'),1);
+												if ($ext == 'md' || $v['type']!='file')
+												{
+													$title = ($v['type']=='file') ? substr($k,0,strrpos($k,'.')) : $k; //去掉md后缀
+													$title = split('\+',$title,2);
+
+													echo "<tr>";
+													echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[0]."</a></td>";
+													echo "<td><a href=\"__APP__/Doc/index?path=".$path."\">".$title[1]."</a></td>";
+													echo "<td>".date('Y-m-d H:i:s',$v['updtime'])."</td>";
+													echo "<td>".count($v['children'])."</td>";
+													echo "</tr>";
+												}
+											}
+										?>
+										</tbody>
+									</table>  
+								</div>
+								<div id="tab2" class="tab-pane">
+								<?php
+									foreach ($node['svnlogs'] as $k=>$v)
+									{
+										$encode = mb_detect_encoding($v, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
+										if ($encode != "UTF-8")	//兼容windows下的中文目录
+										{
+											$v = mb_convert_encoding($v,"UTF-8",$encode);
+										}
+										echo $v."<br/>";
+									}
+								?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.uniform.js"></script>
+        <script src="__PUBLIC__/Tpl/js/select2.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+	</body>
+</html>

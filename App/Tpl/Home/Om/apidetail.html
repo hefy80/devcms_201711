@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>Api</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<form action="#" method="get" class="form-horizontal" />
+						<div class="control-group">
+							<label class="control-label">url</label>
+							<div class="controls">
+								<textarea></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">post</label>
+							<div class="controls">
+								<textarea></textarea>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">header</label>
+							<div class="controls">
+								<textarea></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.form_common.js"></script>
+	</body>
+<script type="text/javascript">
+function onLoad(){
+    document.addEventListener("deviceready", onDeviceReady, false);
+    //getActiveList(7);
+}
+
+function onDeviceReady() {
+//	alert(window.device.platform);
+	if("iOS" == window.device.platform){
+		mam.navigator.loadconfig.getUserInfo(getUserInfoCallback);
+    } else {
+		mam.navigator.loadconfig.getUserInfo('1', getUserInfoCallback);
+	}		
+}
+
+function getUserInfoCallback(obj){
+//	alert(JSON.stringify(obj));
+	$.ajax({
+		type: "POST",
+		async:true,
+		dataType:"json",
+		url: "http://www.jianbuzou.com.cn/NewWanbu/App/Api/index.php/MemberInfo/GetQXUser",
+		data: "appid=QX&appver=1.0.0&version=1.0&qxid="+obj.userId,
+		success: function(msg){
+			//alert("getUserInfoCallback:"+JSON.stringify(msg));
+			if(msg.status == "0000"){   //获取到信息
+//				alert(msg.data.userid);
+				getActiveList(msg.data.userid);
+			}else{  //未获取到信息
+				window.location.href='./login.html?qxid='+obj.userId+'&name='+obj.name;
+			}
+		}
+	});
+}
+
+function getActiveList(userid){
+	//alert("getActiveList:userid="+userid);
+	$.ajax({
+		type: "GET",
+		async:true,
+		dataType:"json",
+		url: "http://sync.jianbuzou.com.cn/IMTE/groupList/owerUser/"+userid,
+		data: "startnum=0&endnum=20",
+		success: function(msg){
+			//alert("getUserInfoCallback:"+JSON.stringify(msg));
+			var str = '';
+			var startdate = '';
+			var enddate = '';
+			var t = new Date();
+			var n = t.getTime()/1000;
+			var status = '';
+			if (msg.length == 0 || !msg[0]){
+				str += '<li>没有竞赛信息</li>';
+			}else{
+				for(var i=0;i<msg.length;i++){
+					//开始、结束时间、状态
+					t.setTime(msg[i].starttime*1000);
+					startdate = t.getFullYear() + '.' + (t.getMonth()+1) + '.' + t.getDate();
+					t.setTime(msg[i].endtime*1000);
+					enddate = t.getFullYear() + '.' + (t.getMonth()+1) + '.' + t.getDate();
+					//状态（热身中、进行中、已结束）
+					if (n < msg[i].starttime)
+						status = '<font color="Green">（热身中）</font>';
+					else if (n < msg[i].endtime)
+						status = '<font color="Red">（进行中）</font>';
+					else
+						status = '（已结束）';
+					str += '<li>'
+						+		'<div>'
+						+			'<a href="http://www.jianbuzou.com.cn/NewWanbu/App/Api/index.php/CompetitionInfoShow/GroupRankNew/from/webapp/userid/'+userid+'/activeid/'+msg[i].activeid+'"><img src="'+msg[i].logo+'"/></a>'
+						+		'</div>'
+						+		'<p class="p1">'+msg[i].activename+'</p>'
+						+		'<p class="p2">'+startdate+'-'+enddate+status+'</p>'
+						+	'</li>';
+					//if (i==0) alert(JSON.stringify(msg[i]));
+				}
+			}
+			$('ul').html(str);
+		}
+	});
+}
+
+</script>
+</html>

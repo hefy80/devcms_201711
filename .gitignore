@@ -1,0 +1,4 @@
+Runtime
+*.bak
+/Cache
+/Upload

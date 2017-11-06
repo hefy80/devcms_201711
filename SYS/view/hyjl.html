@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="width=device-width,user-scalable=no" name="viewport">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打开第三方相关</title>
+<!--导入cordova的类库-->
+<script src="../cordova.js"></script>
+    <script src="../js/public.js"></script>
+<script src="../js/jquery-1.9.1.min.js"></script>
+
+<script>
+    //标识cordova环境是否准备好,初始值为false
+	var deviceReady = false;
+	
+	//页面加载时执行
+    function onLoad(){
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    
+    function onDeviceReady() {
+    	console.log("onDeviceReady()--->start()");
+  		deviceReady = true;
+    	console.log("onDeviceReady()--->end()");
+    }
+	
+	function add(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		var contact = "{'data': [{'group': '开发部','contact': [{'name': '杨1','tel': '13512546000'},{'name': '杨2','tel': '13512546000'},{'name': '杨3','tel': '15512546000'}]},{'group': '策划部','contact': [{'name':'张1','tel': '15368658756'},{'name': '张2','tel': '15368653456'}]}]}";
+		alert(contact);
+		alert("add");
+		//使用这边调用可以获取图像URL[和下面的只能调用一个方法]
+		mam.navigator.contactUtils.add(onSuccess,onError,contact);
+		
+		function onSuccess(data){
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+
+	function deleteContact(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		var contact = "{'data': [{'name': '杨1','tel': '13512546000'},{'name':'张1','tel': '15368658756'}]}";
+		alert(contact);
+		alert("deleteContact");
+		//使用这边调用可以获取图像URL[和下面的只能调用一个方法]
+		mam.navigator.contactUtils.deleteContact(onSuccess,onError,contact);
+
+		function onSuccess(data){
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+	
+	function openSwitch(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("openSwitch");
+		//使用这边调用可以获取本地通讯录
+		//mam.navigator.openSwitch.openSwitch(onSuccess,onError,"1","11104052");
+		mam.navigator.openSwitch.openSwitch(onSuccess,onError,"1","10025");
+		
+		function onSuccess(data){
+			alert(data);
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+	
+
+	function closeSwitch(){
+		
+		if(!deviceReady){
+			alert("执行到这边表示cordova环境没有准备好");
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("关闭轨迹");
+		//使用这边调用可以获取本地通讯录
+		mam.navigator.openSwitch.openSwitch(onSuccess1,onError,"0","10025");		
+		function onSuccess1(data1){
+			alert(data1);
+			
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+
+
+	function addExtra(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("contractInfos");
+		var size = 500;
+		//使用这边调用可以获取本地通讯录
+		mam.navigator.openSwitch.addExtra(onSuccess,onError,size);
+		
+		function onSuccess(data){
+			alert(data);
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+	
+	function openApk(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("openApk");
+		//如果是Android写包名
+		//如果是IOS写scheme
+		var pakName = "com.dlxx.mam.external";
+		//使用这边调用可以获取本地通讯录
+		mam.navigator.openSwitch.openApk(onSuccess,onError,pakName);
+		
+		function onSuccess(data){
+			alert(data);
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+	
+	function toGaoDe(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("toMap");
+		var lon="118.7715143";
+		var lat="32.05132563";
+		//使用这边调用可以获取本地通讯录
+		mam.navigator.openSwitch.toMap(onSuccess,onError,lon,lat);
+		
+		function onSuccess(data){
+			alert(data);
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+	function toBaiDu(){
+		console.log("test()--->start()");
+		if(!deviceReady){
+			//执行到这边表示cordova环境没有准备好
+			return;
+		}
+		alert("toBaiDu");
+		var lon="118.7715143";
+		var lat="32.05132563";
+		//使用这边调用可以获取本地通讯录
+		mam.navigator.openSwitch.toBaiDu(onSuccess,onError,lon,lat);
+		
+		function onSuccess(data){
+			alert(data);
+			console.log("onSuccess() data:" + data);
+		}
+		
+		//参数为string类型
+		function onError(data){
+			alert(data);
+			console.log("onError() data:" + data);
+		}
+		console.log("test()--->end()");
+	}
+</script>
+
+</head>
+
+<body onload="onLoad();">
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="add()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">add(向手机本地通讯录添加联系人)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="deleteContact()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">deleteContact(删除手机本地通讯录中联系人)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="openSwitch()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">openSwitch(人员轨迹上报开关 1打开)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="closeSwitch()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">closeSwitch(人员轨迹上报开关 0关闭)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="addExtra()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">addExtra（读取手机通讯录联系人）</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="openApk()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">openApk(打开第三方原生应用)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="toGaoDe()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">toGaoDe(打开高德)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onclick="toBaiDu()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="31%" height="60" align="right"><img src="../images/photo.png" width="72" height="50" /></td>
+        <td width="69%">
+        	<span class="STYLE1">toBaiDu(打开百度)</span>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><br />
+</p>
+<p>&nbsp;</p>
+</body>
+</html>

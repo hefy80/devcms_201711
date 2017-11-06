@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>常用统计</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-eye-open"></i>
+							</span>
+							<h5>质量</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="2%">年</th>
+										<th width="2%">月</th>
+										<th width="24%" colspan="3">平均响应时间</th>
+										<th width="24%" colspan="3">平均解决时间</th>
+										<th width="24%" colspan="3">未及时响应次数</th>
+										<th width="24%" colspan="3">未及时解决次数</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="Line" id="vy">
+										<volist name="vy.statq" id="vq" key="kq">
+											<volist name="vq.statm" id="vm" key="km">
+												<tr>
+													<if condition="($kq eq 1) AND ($km eq 1)"><td style="text-align: center; vertical-align: middle"  rowspan="{$vy.months}">{$vy.year}</td></if>
+													<td style="text-align: center; vertical-align: middle">{$vm.month}</td>
+													<td style="text-align: center; vertical-align: middle">{$vm.resp_avg}</td>
+													<if condition="$km eq 1"><td style="text-align: center; vertical-align: middle"  rowspan="{$vq.months}">{$vq.resp_avg}</td></if>
+													<if condition="($kq eq 1) AND ($km eq 1)"><td style="text-align: center; vertical-align: middle"  rowspan="{$vy.months}">{$vy.resp_avg}</td></if>
+													<td style="text-align: center; vertical-align: middle">{$vm.done_avg}</td>
+													<if condition="$km eq 1"><td style="text-align: center; vertical-align: middle"  rowspan="{$vq.months}">{$vq.done_avg}</td></if>
+													<if condition="($kq eq 1) AND ($km eq 1)"><td style="text-align: center; vertical-align: middle"  rowspan="{$vy.months}">{$vy.done_avg}</td></if>
+													<td style="text-align: center; vertical-align: middle">{$vm.response_t}</td>
+													<if condition="$km eq 1"><td style="text-align: center; vertical-align: middle"  rowspan="{$vq.months}">{$vq.response_t}</td></if>
+													<if condition="($kq eq 1) AND ($km eq 1)"><td style="text-align: center; vertical-align: middle"  rowspan="{$vy.months}">{$vy.response_t}</td></if>
+													<td style="text-align: center; vertical-align: middle">{$vm.done_t}</td>
+													<if condition="$km eq 1"><td style="text-align: center; vertical-align: middle"  rowspan="{$vq.months}">{$vq.done_t}</td></if>
+													<if condition="($kq eq 1) AND ($km eq 1)"><td style="text-align: center; vertical-align: middle"  rowspan="{$vy.months}">{$vy.done_t}</td></if>
+												</tr>
+											</volist>
+										</volist>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

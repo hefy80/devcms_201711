@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+	<head>
+		<meta content="width=device-width,user-scalable=no" name="viewport" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<title>实验室-网关接入</title>
+		<script src="../js/jquery-1.9.1.min.js" /></script>
+		<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+		<script src="../js/public.js"></script>
+		<link href="../style/basePluginCss.css" rel="stylesheet" />
+		<script type="text/javascript">
+		 function onDeviceReady() {        	
+    	ready = true;		
+    }
+		//前往页面
+			function toPage(target)
+		 	{
+				
+				var id = target.id;
+		  		var strHref = "";		  	
+
+				var appCode = document.getElementById("appCode").value;
+				var appServerCode = document.getElementById("appServerCode").value;
+				var params = document.getElementById("params").value;
+
+				if(appCode ==""  && appServerCode =="")
+				{
+					appCode="NEPLATNODE";
+					appServerCode="getNode";
+					execute(id,appCode,appServerCode);
+				}else if(appCode!=""  && appServerCode!="")
+				{
+					execute(id,appCode,appServerCode);
+				}else
+				{
+					alert("请输入正确的值！");
+				}
+		  	}
+			
+			function execute(id,appCode,appServerCode)
+		 	{
+				 alert("插件："+id+" 应用编码："+appCode+" 服务编码："+appServerCode);
+				if(id=="getJSON")
+				 {
+					 var data={method:"uploadFjxx"};
+					 //mam.navigator.ajax.getJSON('appcode_SYS13','data','getJSON', successCallback);					
+					 mam.navigator.ajax.getJSON(appCode,'',appServerCode, successCallback);
+				 } else if(id=="postJSON")
+				 {				
+					 mam.navigator.ajax.postJSON(appCode,'',appServerCode, successCallback);
+				 }else if(id=="get")
+				 {			 
+					 mam.navigator.ajax.get(appCode,'',appServerCode, successCallback);
+				 }else if(id=="post")
+				 {	
+					 mam.navigator.ajax.post(appCode,'',appServerCode, successCallback);
+				 }else if(id=="check_getJSON")
+				{
+					alert("mam.navigator.ajax.getJSON("+appCode+",'',"+appServerCode+", successCallback);");
+				}
+
+			}
+			
+			function successCallback(v)
+			{
+				alert("插件调用成功");
+				var json = JSON.stringify(v);
+				alert("getJson插件调用成功: "+json);
+			}			
+		</script>
+	</head>
+
+	<body>
+	<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+			<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">应用编码</span></td>
+						<td class="BK3" id="latitude" style="text-align:center;" width="32%" colspan="2">
+							<input id="appCode" style="width: 80px;"/>
+						</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">服务编码</span></td>
+						<td class="BK3" id="latitude" style="text-align:center;" width="32%" colspan="2">
+							<input id="appServerCode" style="width: 80px;"/>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">参数：</span></td>
+						<td class="BK3" colspan="5" id="longitude">
+							<input id="params"  disabled="disabled" value="暂不支持" style="width: 100px;"/>
+						</td>
+					</tr>
+					<!--
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="100%" width="16%"><span class="STYLE2">应用编码</span></td>
+						<td class="BK3" id="latitude" width="32%">
+						<input id="appCode" style="height: 42;"  width="32%"/></td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">应用服务编码</span></td>
+						<td class="BK3" id="latitude" width="32%">
+						<input id="appServerCode" style="height: 42;"  width="32%"/></td>
+					</tr>
+					-->
+					
+				</tbody>
+		</table>
+		
+
+
+		<!--**************************************getJSON-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">getJSON</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">以get方式发送异步请求，返回json对象<font color="#ff0000">(推荐使用)</font></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="getJSON" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_getJSON" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+			<!--**************************************postJSON-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">postJSON</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">以post方式发送异步请求，返回json对象<font color="#ff0000">(推荐使用)</font></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="postJSON" onclick='toPage(this)'><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_postJSON" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!--**************************************get-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">get</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">以get方式发送异步请求，返回json对象</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="get" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_get" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!--**************************************post-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">post</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">以post方式发送异步请求，返回json对象</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="post" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_post" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</body>
+
+</html>

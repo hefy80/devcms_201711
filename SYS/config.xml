@@ -1,0 +1,27 @@
+<?xml version='1.0'   encoding='utf-8' ?>
+<config>
+	<appname>实验室</appname>
+	<version>2</version>
+	 <refreshbutton>1</refreshbutton>
+    <historybutton>1</historybutton>
+    <needlogin>0</needlogin>
+    <baseevent>1</baseevent>
+    <localfile>1</localfile>
+    <camera>1</camera>
+    <capture>1</capture>
+    <geolocation>1</geolocation>
+    <connection>1</connection>
+    <device>1</device>
+    <media>1</media>
+    <compass>1</compass>
+    <loadconfig>1</loadconfig>
+    <notification>1</notification>
+    <reportedevent>1</reportedevent>
+    <fileupload>1</fileupload>
+    <twodiemcode>1</twodiemcode>
+    <ajaxrequest>1</ajaxrequest>
+    <flatdatabase>1</flatdatabase>
+    <appdatabase>1</appdatabase>
+    <vfsfile>1</vfsfile>
+    <gotodial>1</gotodial>
+</config>

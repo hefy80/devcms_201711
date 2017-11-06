@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+		<style type="text/css">
+			li.thumb_app{width: 320px;height: 200px;}
+		</style>
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+						<div class="widget-box">
+							<div class="widget-content">
+								<ul class="thumbnails">
+								<?php
+									foreach ($webs as $k=>$v)
+									{
+										echo "<li class=\"thumb_app\"><a href=\"".$v['url']."\" target=\"_blank\" class=\"thumbnail\"><img src=\"".APP_UPLOADPATH."/Index/".$v['img']."\" alt=\"\" /><h5 style=\"text-align:center\">".$k."</h5></a></li>";
+									}
+								?>
+								</ul>
+							</div>
+						</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

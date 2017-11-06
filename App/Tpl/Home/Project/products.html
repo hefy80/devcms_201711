@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>产品需求列表</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<?php
+											reset($storys); 
+											foreach (current($storys) as $k=>$v)
+											{
+												echo "<th>".$k."</th>";
+											}
+										?>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										foreach ($storys as $k=>$v)
+										{
+											echo "<tr>";
+											foreach ($v as $kk=>$vv)
+											{
+												echo "<td>";
+												if ($kk=='编号' || $kk=='产品')
+												{
+													echo "<a href=\"http://192.168.92.177/zentao/product-browse-".$v['编号'].".html\" target=\"_blank\">".$vv."</a>";
+												}
+												else if ($kk=='开发中')
+												{
+													echo "<ul>";
+													foreach ($vv as $kkk=>$vvv)
+													{
+														echo "<li><a href=\"http://192.168.92.177/zentao/story-view-".$vvv['id'].".html\" target=\"_blank\">".$vvv['title']."</a></li>";
+													}
+													echo "</ul>";
+												}
+												else 
+												{
+													echo $vv;
+												}
+												echo "</td>";
+											}
+											echo "</tr>";
+										}
+									?>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

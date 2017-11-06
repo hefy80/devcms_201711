@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+		<style>
+			p {text-indent: 2em; padding-bottom: 10px; line-height: 1.5; font-family: 'MicroSoft YaHei', 'Courier New', 'Andale Mono', monospace;}
+			li {line-height: 2;}
+		</style>
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>文档</h1>
+			</div>
+			<div id="breadcrumb">
+				<i class="icon-home"></i>
+				<?php
+					$size = count($node['forefather']);
+					foreach ($node['forefather'] as $k=>$v)
+					{
+						$path=urlencode(base64_encode($v['path']));
+
+						//允许管理员打印
+						unset($param);
+						if ($k >= $size-1 && $admin)
+						{
+							$param = "&print=true";
+						}
+						echo "<a href=\"__APP__/Doc/index?path=".$path.$param."\" class=\"current\">".$v['name']."</a>";
+					}
+				?>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="widget-box">
+							<div class="widget-title">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#tab1">detail</a></li>
+                                    <li><a data-toggle="tab" href="#tab2">svn log</a></li>
+                                </ul>
+							</div>
+							<div class="widget-content tab-content">
+								<div id="tab1" class="tab-pane active">
+									{$txt}
+								</div>
+								<div id="tab2" class="tab-pane">
+								<?php
+									foreach ($node['svnlogs'] as $k=>$v)
+									{
+										$encode = mb_detect_encoding($v, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
+										if ($encode != "UTF-8")	//兼容windows下的中文目录
+										{
+											$v = mb_convert_encoding($v,"UTF-8",$encode);
+										}
+										echo $v."<br/>";
+									}
+								?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var tables = document.getElementsByTagName('table');
+			for (var x in tables) {
+				tables[x].className="table table-bordered";
+			}
+		</script>
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+	</body>
+</html>

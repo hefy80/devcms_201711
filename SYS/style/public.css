@@ -1,0 +1,106 @@
+*{padding:0px;margin:0px;font-size:14px;}
+img{border:0px;vertical-align:top;}
+a{text-decoration:none;}
+li{list-style:none;}
+.main{padding:10px;margin-bottom:50px;}
+table {border-collapse: collapse; border-spacing: 0;width:100%;}
+
+.inputStyle {
+		background-color: #fff;
+		border: 0px;
+		width: 100%;
+		font-size: 1.3em;
+		outline:none;
+	}
+.space20{height:20px;}
+.space10{height:10px;}
+thead td{background-color: #F4F4F4;}
+
+
+body{background:#fff;}
+.tlist{border-left:1px solid #CED4D9;border-top:1px solid #CED4D9;}
+.tlist td,.tlist th{border-right:1px solid #CED4D9;border-bottom:1px solid #CED4D9;padding:8px;}
+.tlist th{text-align:left;background:#efefef;}
+
+.tlist .xx{padding:0px;background:#F5F5F5;display:none;}
+.xx table td{padding:2px;font-size:12px;}
+
+.tlist1{border-left:1px solid #CED4D9;border-top:1px solid #CED4D9;border-right:1px solid #CED4D9;}
+.tlist1 td,.tlist1 th{padding:8px;border-bottom:1px solid #CED4D9;}
+.l{float:left;color:#000}
+.r{float:right;}
+
+a.button{
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;
+	border: 1px solid #4C8FE0;
+	color: #4C8FE0;
+	font-size: 1.05em;
+	font-weight: 700;
+	border-radius:2px;
+}
+
+a.button:active{
+	border:1px solid #4C8FE0;color:#fff;
+	background:#4C8FE0;
+}
+a.button_active{
+	border:1px solid #4C8FE0;color:#fff;
+	background:#4C8FE0;
+}
+
+.button span{
+	display:block;
+	font-size: 14px;
+	padding: 8px 10px;
+	white-space: nowrap;
+	}
+a.little{
+	font-size:12px;
+	padding: .55em 11px .5em;
+	font-weight: 400;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	box-shadow:none;
+}
+a.little span{padding:0px;font-size:12px;}
+.ctbtn{
+	border: 1px solid #4C8FE0;
+	cursor: pointer;
+	font-size: 1.05em;
+	color:#4C8FE0;
+	position:relative;
+	margin-bottom:5px;
+	border-radius: 2px;
+	padding:8px;
+	
+}
+
+.btcontent{
+	background:url(../images/chosearr.png) no-repeat  right 3px;
+}
+.ctlist{
+	display:none;
+	border:1px solid #4C8FE0;
+	padding:5px;
+	color:#4C8FE0;
+	overflow:hidden;
+	position:absolute;
+	background:#fff;
+	z-index:1000;
+}
+.ctlist li{
+	display:inline-block;
+	width:60px;
+	padding:5px;
+	text-align:center;
+}
+.ctlist li:hover,.ctlist li:active{
+	color:#fff;
+	background:#4C8FE0;
+	border-radius:5px;
+}
+.explain{color:#AFAFAF;font-size:12px;line-height:150%;}

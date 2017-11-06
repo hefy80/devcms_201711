@@ -1,0 +1,166 @@
+<html>
+<head>
+	<meta content="width=device-width,user-scalable=no" name="viewport" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<title>实验室</title>
+	<style type="text/css"><!--
+body {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #E8F6F7;
+	margin-top: 20px;
+}
+.STYLE7 {font-size: 18px; font-family: "黑体"; }
+-->
+	</style>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="js/public.js"></script><script>
+	var deviceReady = false;
+    function onLoad(){
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    
+    function onDeviceReady() {
+    	console.log("onDeviceReady()--->start()");
+    	deviceReady = true; 	
+    	console.log("onDeviceReady()--->end()");
+    }
+	
+
+	
+	
+		function toPage(target)
+ 	{
+		var id = target.id;
+  		var strHref = "";
+  		if(id=="check")
+		 {
+		 	strHref = "index.html";
+		 }
+		 else if(id == "getUserInfo")
+		 {		 	
+		 	mam.navigator.loadconfig.getUserInfo(1,getUserInfo,login);		 
+		 }
+		  self.location = strHref;
+  	}
+ 	
+ 	
+</script>
+</head>
+<body onload="onLoad()">
+
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody>
+		<tr>
+			<td align="center"><a href="view/basePlugin.html"><img border="0" height="103" src="images/jk.png" width="103" /></a></td>
+			<td align="center"><a href="fileReader.html"><img border="0" height="103" src="images/dwf.png" width="103" /></a></td>
+			<td align="center"><a href="view/scan.html"><img border="0" height="103" src="images/dt.png" width="103" /></a></td>
+		</tr>
+		<tr>
+			<td align="center" height="40"><span class="STYLE7">基础接口</span></td>
+			<td align="center" height="40"><span class="STYLE7">文件操作</span></td>
+			<td align="center"><span class="STYLE7">数据存储</span></td>
+		</tr>
+	</tbody>
+</table>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody>
+		<tr>
+			<td align="center"><a href=""><img border="0" height="103" src="images/jk.png" width="103" /></a></td>
+			<td align="center"><a href=""><img border="0" height="103" src="images/dwf.png" width="103" /></a></td>
+			<td align="center"><a href=""><img border="0" height="103" src="images/dt.png" width="103" /></a></td>
+		</tr>
+		<tr>
+			<td align="center" height="40"><span class="STYLE7">消息推送</span></td>
+			<td align="center" height="40"><span class="STYLE7">通知提醒</span></td>
+			<td align="center"><span class="STYLE7">企信</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody>
+		<tr>
+			<td align="center"><a href="scan.html"><img border="0" height="103" src="images/ewm.png" width="103" /></a></td>
+			<td align="center"><a href="filebreakpointTransferList.html"><img border="0" height="103" src="images/ico.png" width="103" /></a></td>
+			<td align="center"><a href="location.html"><img border="0" height="103" src="images/location.png" width="103" /></a></td>
+		</tr>
+		<tr>
+			<td align="center" height="40"><span class="STYLE7">二维码扫描</span></td>
+			<td align="center" height="40"><span class="STYLE7">文件上传</span></td>
+			<td align="center"><span class="STYLE7">GPS定位</span></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody>
+		<tr>
+			<td align="center"><a href="takePhoto.html"><img border="0" height="103" src="images/camera.png" width="103" /></a></td>
+			<td align="center"><a href="capture.html"><img border="0" height="103" src="images/record.png" width="103" /></a></td>
+			<td align="center"><a href="device.html"><img border="0" height="103" src="images/device.png" width="103" /></a></td>
+		</tr>
+		<tr>
+			<td align="center" height="40"><span class="STYLE7">相机</span></td>
+			<td align="center" height="40"><span class="STYLE7">(音/视)频录制</span></td>
+			<td align="center"><span class="STYLE7">设备信息</span></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody>
+		<tr>
+			<td align="center" height="103" width="33%"><a href="appLocalInstall.html"><img border="0" height="103" src="images/install.png" width="103" /> </a></td>
+			<td align="center" height="103" width="33%"><a href="netTrafficStat.html"><img border="0" height="103" src="images/netTrafficStat.png" width="103" /> </a></td>
+			<td align="center" height="103" width="33%"><a href="vfs.html"><img border="0" height="103" src="images/vfs.png" width="103" /> </a></td>
+		</tr>
+		<tr>
+			<td align="center" height="40"><span class="STYLE7">应用本地安装</span></td>
+			<td align="center" height="40"><span class="STYLE7">网络流量统计</span></td>
+			<td align="center" height="40"><span class="STYLE7">虚拟文件</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="display: block;" width="95%">
+	<tbody>
+		<tr>
+			<td align="center" height="103" width="33%"><a href="netWorkStatus.html"><img border="0" height="103" src="images/netWorkStatus_AppIcon.png" width="103" /> </a></td>
+			<td align="center" height="103" width="33%"><a href="media.html"><img border="0" height="103" src="images/media_AppIcon.png" width="103" /> </a></td>
+			<td align="center"><a href="compass.html"><img border="0" height="103" src="images/fresn.png" width="103" /></a></td>
+		</tr>
+		<tr>
+			<td align="center"><span class="STYLE7">网络状态(监听/获取)</span></td>
+			<td align="center"><span class="STYLE7">多媒体</span></td>
+			<td align="center"><span class="STYLE7">罗盘</span></td>
+		</tr>
+	</tbody>
+</table>
+<!--现在上面还没有临时的调试应用
+	此面板用于调试用的
+	这边是调试面板，默认属性设定成隐藏
+  	style="display:block":显示
+  	style="display:none":隐藏
+-->
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="display: none;" width="95%">
+	<tbody>
+		<tr>
+			<td align="center" height="103" width="33%">&nbsp;</td>
+			<td align="center" height="103" width="33%">&nbsp;</td>
+			<td align="center" height="103" width="33%">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center">&nbsp;</td>
+			<td align="center">&nbsp;</td>
+			<td align="center">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<div id="sidebar">
+	<a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+	<ul>
+		<?php
+			//一级目录
+			foreach ($menu as $k=>$v)
+			{
+				$subcount = count($v['submenu']);
+				echo "<li";
+				unset($sTmp);
+				if ($subcount>0) 
+				{
+					$sTmp="submenu";
+				}
+				if ($v['module']==MODULE_NAME) 
+				{
+					$sTmp=$sTmp." active";
+					if ($subcount>0) 
+					{
+						$sTmp=$sTmp." open";
+					}
+				}
+				if ($sTmp) 
+				{
+					echo " class=\"".$sTmp."\"";
+				}
+				echo ">";
+				
+				if ($subcount>0)
+				{
+					echo "<a><i class=\"icon ".$v['icon']."\"></i><span>".$k."</span><span class=\"label\">".$subcount."</span></a><ul>";
+					//二级目录
+					foreach ($v['submenu'] as $kk=>$vv)
+					{
+						$func = $vv['func'] ? $vv['func'] : 'index';
+						echo "<li ";
+						if ($func==ACTION_NAME && $_REQUEST[$vv['param']]==$vv['value']){
+							echo "class=\"active\"";
+						}
+						echo "><a href=\"__APP__/".$v['module']."/".$func;
+						if ($vv['param'] && $vv['param']!='')
+						{
+							echo "?".$vv['param']."=".$vv['value'];
+						}
+						echo "\"><i class=\"icon-hand-right\"></i><span>  ".$kk."</span></a></li>";
+					}
+					echo "</ul>";
+				}
+				else
+				{
+					echo "<a href=\"__APP__/".$v['module']."\"><i class=\"icon ".$v['icon']."\"></i><span>".$k."</span></a>";
+				}
+				echo "</li>";
+			}
+		?>
+	</ul>
+</div>

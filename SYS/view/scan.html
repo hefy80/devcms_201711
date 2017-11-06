@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta content="width=device-width,user-scalable=no" name="viewport">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实验室-二维码扫描</title>
+<style type="text/css">
+<!--
+.STYLE1 {
+	color: #FFFFFF;
+	font-size: 17px;
+	font-family: "黑体";
+}
+-->
+</style>
+<link href="../css/css.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	background-color: #E8F6F7;
+	margin-left: 0px;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.STYLE3 {
+	font-family: "黑体";
+	color: #FFFFFF;
+	font-size: 16px;
+}
+.border {
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #8BBABB;
+	border-left-color: #8BBABB;
+}
+.right {
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #8BBABB;
+	border-bottom-color: #8BBABB;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+}
+
+-->
+</style>
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+
+<script>
+var ready = false;
+function onLoad(){     
+	document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+ function onDeviceReady() {    
+    	//设定标志位，到扫描二维码界面时用到这个标志位
+    	ready = true;		
+    }
+
+
+
+
+
+
+
+//到扫描界面
+	function executeGoToScanPager(){
+    	console.log("executeGoToScanPager()-->start");
+    	if(!ready){
+    		console.log("Cordova is not ready,return");
+    		return;
+    	}
+		//获取平台信息[需要把这边获取的平台信息发送到服务器]
+    	var devicePlatform = device.platform;
+		document.getElementById("list").innerHTML = "";
+    	//执行到这边表示cordova环境准备完成,在二维码扫描界面
+    	mam.navigator.forward.goToScanTwoDiemCode(successCallback,errorCallback);
+    	//执行成功回调
+    	//这边参数表示扫描成功后返回的字符串
+    	function successCallback(msg){    		
+			alert("11");
+    		document.getElementById('textarea').value = msg;
+       }    	
+    	//执行失败回调[扫描失败，暂不退出界面未做处理]
+    	function errorCallback(msg){
+    		alert("11");
+			document.getElementById("list").innerHTML = "";
+    	} 
+    }
+</script>
+</head>
+<!--<body onLoad="onLoad();">-->
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" onClick="executeGoToScanPager()">
+  <tr>
+    <td bgcolor="#0A7E81"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="26%" height="60" align="right"><img src="images/file.png" width="40" height="52"></td>
+        <td width="74%"><span class="STYLE1">　我要扫描22</span></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center"><label>
+      <textarea name="textarea" cols="45" rows="5" class="bkz" id="textarea"></textarea>
+    </label></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><table width="100" border="0" align="right" cellpadding="0" cellspacing="0" onClick="executeClear()">
+      <tr>
+        <td height="50" align="center" bgcolor="#0A7E81" class="STYLE3">清除结果</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+<div id="list"></div>
+<br>
+<center>
+</center>
+<p>
+
+</p>
+</body>
+</html>

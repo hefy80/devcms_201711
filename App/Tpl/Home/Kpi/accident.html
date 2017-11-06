@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>非正常运营事故</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>年</th>
+										<th>月</th>
+										<th>数量</th>
+										<th width="50%">描述</th>
+										<th>主责</th>
+										<th>次责</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$y = $m = $n = 0;
+										foreach ($Accidents as $k => $v){
+											foreach ($v['stat'] as $km => $vm){
+												foreach ($vm['stat'] as $kn => $vn){
+													echo "<tr>";
+													if ($y != $k){
+														$y = $k;
+														echo "<td rowspan=\"".$v['count']."\">".$k."</td>"; //年
+													}
+													if ($m != $km){
+														$m = $km;
+														echo "<td rowspan=\"".$vm['count']."\">".$km."</td>"; //月
+													}
+													if (0 == $kn){
+														echo "<td rowspan=\"".$vm['count']."\">".$vm['count']."</td>"; //数量
+													}
+													echo "<td><a href=\"http://192.168.92.177/zentao/story-view-".$vn['id'].".html\" target=\"_blank\">".$vn['title']."</a></td>"; //描述
+													echo "<td>".$vn['reviewedBy']."</td>"; //主责
+													echo "<td>".$vn['mailto']."</td>"; //次责
+													echo "</tr>";
+												}
+											}
+										}
+									?>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

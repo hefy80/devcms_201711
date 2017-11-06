@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>测试页（何）</title>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>	
+		
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+
+
+	</head>
+<script type="text/javascript">
+			//onLoad()方法，准备cordova环境
+			//全局标志变量
+			var ready = false;
+			function onLoad(){ 
+				console.log("onLoad()--start");
+				document.addEventListener("deviceready", onDeviceReady, false);
+				console.log("onLoad()--end");
+			}
+
+			 function onDeviceReady() {
+					console.log("\n\n");
+					//console.log("=============<LoacalFileSystem> log start============");
+					console.log("onDeviceReady()-->start");
+					//设定标志位，到扫描二维码界面时用到这个标志位
+					ready = true;
+					console.log("onDeviceReady()--end");
+					//console.log("=============<LoacalFileSystem> log   end============");
+					console.log("\n\n");	
+				}
+
+
+
+
+			function takePhoto() {
+				if (!deviceReady) {
+					//执行到这边表示cordova环境没有准备好
+					return;
+				}
+				//使用这边调用可以获取图像URL[和下面的只能调用一个方法]
+				navigator.camera.getPicture(onSuccess, onError, getCameraOptions());
+			}
+
+			function getCameraOptions() {
+				var cameraOptions = {
+					quality: 50,
+					destinationType: navigator.camera.DestinationType.FILE_URI,
+					sourceType: navigator.camera.PictureSourceType.CAMERA,
+					targetWidth: 0,
+					targetHeight: 0,
+					//allowEdit : true,
+					encodingType: Camera.EncodingType.JPEG,
+					saveToPhotoAlbum: true
+				};
+				return cameraOptions;
+			}
+
+			function onSuccess(imageURI) {
+				alert("onSuccess() imageURI:" + imageURI);
+				//从这边返回数据
+				$("#m-photo").attr("src", imageURI);
+				$("#m-photo").css("display", "block");
+				$("#m-photo-url").html(imageURI);
+			}
+			//参数为string类型
+			function onError(cameraError) {
+				alert(cameraError);
+			}
+			// 上传文件到服务器
+			function uploadFile() {
+				alert($("#m-photo-url").html());
+				var ft = new FileTransfer();
+				alert("FileTransfer");
+				var path = $("#m-photo-url").html();
+				var name = "hmx";
+				ft.upload(path, "http://123.57.25.126/pms7.1_cvs/rest/setDGDWJHZP",
+					function(result) {
+						alert('Upload success: ' + result.responseCode);
+						alert(result.bytesSent + ' bytes sent');
+					},
+					function(error) {
+						alert('Error uploading file ' + path + ': ' + error.code);
+					}, {
+						fileName: name
+					});
+			}
+			//到扫描界面
+			function executeGoToScanPager() {
+				if (!deviceReady) {
+					return;
+				}
+				//获取平台信息[需要把这边获取的平台信息发送到服务器]
+				//				var devicePlatform = device.platform;
+				//				document.getElementById("list").innerHTML = "";
+				//执行到这边表示cordova环境准备完成,在二维码扫描界面
+				alert("executeGoToScanPager");
+				mam.navigator.forward.goToScanTwoDiemCode(successCallback,errorCallback);
+				//执行成功回调
+				//这边参数表示扫描成功后返回的字符串
+				function successCallback(msg) {
+					alert("111");
+					console.log("successCallback() msg:" + msg);
+					//					document.getElementById('textarea').value = msg;
+					//					//注意:发布pubtest版本或mobile版本时需要修改这边的url
+					//					//mobile环境
+					//					//var url = "http://mobile.js.sgcc.com.cn/netplatform-web/service/category/searchCode.do?codeid="+msg+"&namecode=" + devicePlatform;
+					//					//pubtest环境
+					//					var url = "http://pubtest.js.sgcc.com.cn/netplatform-web/service/category/searchCode.do?codeid=" + msg + "&namecode=" + devicePlatform;
+					//					//var url = "http://192.168.2.102:7001/netplatform-web/service/category/searchCode.do?codeid="+msg+"&namecode=" + devicePlatform;
+					//					//向服务器发送ajax请求
+					//					$.ajax({
+					//						type: "get",
+					//						async: false,
+					//						url: url,
+					//						data: {
+					//							'codeid': msg,
+					//							'namecode': devicePlatform
+					//						},
+					//						dataType: 'json',
+					//						success: function(result) {
+					//							console.log("successCallback() result:" + result);
+					//							var html = "";
+					//							html = html + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="right">' + '<tr>' + '<td width="32%" height="30" align="center" bgcolor="#0A7E81" class="border"><p class="STYLE3" >索引列</p></td>' + '<td width="68%" class="border">' + result.result.data[0].id + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">设备名称</span></td>' + '<td class="border">' + result.result.data[0].name + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">CPU</span></td>' + '<td class="border">' + result.result.data[0].cpu + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">内存</span></td>' + '<td class="border">' + result.result.data[0].carch + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段1</span></td>' + '<td class="border">' + result.result.data[0].type1 + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段2</span></td>' + '<td class="border">' + result.result.data[0].type2 + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段3</span></td>' + '<td class="border">' + result.result.data[0].type3 + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段4</span></td>' + '<td class="border">' + result.result.data[0].type4 + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段5</span></td>' + '<td class="border">' + result.result.data[0].type5 + '</td>' + '</tr>' + '<tr>' + '<td height="30" align="center" bgcolor="#0A7E81" class="border"><span class="STYLE3">扩充字段6</span></td>' + '<td class="border">' + result.result.data[0].type6 + '</td>' + '</tr>' + '</table>'
+					//							console.log("successCallback() html:" + html);
+					//							//html = document.getElementById("list").innerHTML;
+					//							document.getElementById("list").innerHTML = html;
+					//						}
+					//					});
+				}
+				//执行失败回调[扫描失败，暂不退出界面未做处理]
+				function errorCallback(msg) {
+					alert("222");
+					console.log("errorCallback() msg:" + msg);
+					document.getElementById("list").innerHTML = "";
+				}
+			}
+		</script>
+	<body onLoad="onLoad();">
+		<input type="button" id="" value="拍照并显示" onclick="takePhoto()" />
+		<input type="button" id="" value="上传" onclick="uploadFile()" />
+		<input type="button" id="" value="扫描二维码" onclick="executeGoToScanPager()" />
+		<img id="m-photo" src="" style="width: 100%;display: none;" />
+		<p id="m-photo-url"></p>
+
+		
+	</body>
+
+</html>

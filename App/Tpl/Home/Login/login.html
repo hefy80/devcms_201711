@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		{:W('Link',array(),false)}
+        <link rel="stylesheet" href="__PUBLIC__/Tpl/css/unicorn.login.css" />
+	</head>
+    <body>
+        <div id="logo">
+            <img src="/Public/Tpl/img/wanbulogo.png" alt="" />
+        </div>
+        <div id="loginbox">            
+            <form id="loginform" class="form-vertical" action="{:U('Home/Login/doLogin')}" name="loginBtn" method="post"/>
+				<p>请输入用户名和密码{$err_msg}</p>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="请输入用户名" name="username" id="username" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-lock"></i></span><input type="password" placeholder="请输入密码" name="password" id="password" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <span class="pull-left"><a href="#" class="flip-link" id="to-recover">忘记密码</a></span>
+                    <span class="pull-right"><input type="submit" class="btn btn-inverse" value="登录" id="login"/></span>
+                </div>
+            </form>
+            <form id="recoverform" action="{:U('Home/Login/doRecover')}" class="form-vertical"  name="recover" method="post"/>
+				<p>请输入接收新密码的邮箱</p>
+				<div class="control-group">
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span><input type="text" placeholder="邮箱" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <span class="pull-left"><a href="#" class="flip-link" id="to-login">&lt; 登录</a></span>
+                    <span class="pull-right"><input type="submit" class="btn btn-inverse" value="取回密码" /></span>
+                </div>
+            </form>
+        </div>
+        
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.login.js"></script>
+    </body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>常用统计</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-wrench"></i>
+								二线支持
+							</span>
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#tab1">2014年上半年</a></li>
+								<li><a data-toggle="tab" href="#tab2">2014年Q2季度</a></li>
+								<li><a data-toggle="tab" href="#tab3">2014年4月</a></li>
+							</ul>
+						</div>
+						<div class="widget-content tab-content">
+							<div id="tab1" class="tab-pane active">
+								<ul class="stats-plain">
+									<li>										
+										<h4>5</h4>
+										<span>非正常运营</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['resp']}</h4>
+										<span>平均响应时间</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['done']}</h4>
+										<span>平均解决时间</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['resp24']}</h4>
+										<span>24小时未响应次数</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['done14']}</h4>
+										<span>14天未解决次数</span>
+									</li>
+								</ul>
+							</div>
+							<div id="tab2" class="tab-pane">This is a Tab Two Content</div>
+							<div id="tab3" class="tab-pane">This is a Tab Three Content</div>
+						</div>                            
+					</div>
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-wrench"></i>
+								三线支持
+							</span>
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#tab1">2014年上半年</a></li>
+								<li><a data-toggle="tab" href="#tab2">2014年Q2季度</a></li>
+								<li><a data-toggle="tab" href="#tab3">2014年4月</a></li>
+							</ul>
+						</div>
+						<div class="widget-content tab-content">
+							<div id="tab1" class="tab-pane active">
+								<ul class="stats-plain">
+									<li>										
+										<h4>{$line3Stat['resp']}</h4>
+										<span>平均响应时间</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['done']}</h4>
+										<span>平均解决时间</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['resp24']}</h4>
+										<span>24小时未响应次数</span>
+									</li>
+									<li>										
+										<h4>{$line3Stat['done14']}</h4>
+										<span>14天未解决次数</span>
+									</li>
+								</ul>
+							</div>
+							<div id="tab2" class="tab-pane">This is a Tab Two Content</div>
+							<div id="tab3" class="tab-pane">This is a Tab Three Content</div>
+						</div>                            
+					</div>
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-screenshot"></i>
+							</span>
+							<h5>执行力 (86%)</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="10%">部门</th>
+										<th width="15%">任务按时完成率</th>
+										<th>完成率展示</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="ExecutionList" id="vo">
+										<tr>
+											<td style="text-align: center">{$vo[department]}</td>
+											<td style="text-align: center">{$vo[rate]} ({$vo[finish]}/{$vo[all]})</td>
+											<td>
+												<div class="progress progress-striped 
+													<if condition="$vo[rate] egt '90%'">progress-success
+													<elseif condition="$vo[rate] egt '80%'"/>progress-warning
+													<else />progress-danger
+													</if> active" style="margin-bottom:0px">
+													<div style="width: {$vo[rate]};" class="bar"></div>
+												</div>
+											</td>
+										</tr>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-eye-open"></i>
+							</span>
+							<h5>质量</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<ul class="stat-boxes">
+								<li>
+									<div class="left peity_bar_good"><span>2,4,9,7,12,10,12</span>+20%</div>
+									<div class="right">
+										<strong>事故</strong>
+										次数
+									</div>
+								</li>
+								<li>
+									<div class="left peity_bar_neutral"><span>20,15,18,14,10,9,9,9</span>7%</div>
+									<div class="right">
+										<strong>内部</strong>
+										BUG率
+									</div>
+								</li>
+								<li>
+									<div class="left peity_bar_bad"><span>3,5,9,7,12,20,10</span>-50%</div>
+									<div class="right">
+										<strong>外部</strong>
+										BUG率
+									</div>
+								</li>
+							</ul>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="10%">项目组</th>
+										<th width="20%" colspan="2">bug率</th>
+										<th>bug率展示</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="BugList" id="vo">
+										<tr>
+											<td style="text-align: center; vertical-align: middle" rowspan="2">{$vo[team]}</td>
+											<td style="text-align: center"><span class="label label-warning">内</span></td>
+											<td style="text-align: center">{$vo[rate_i]} ({$vo[bug_i]}/{$vo[manhour]})</td>
+											<td>
+												<div class="progress progress-striped 
+													<if condition="$vo[rate_i] egt '90%'">progress-success
+													<elseif condition="$vo[rate_i] egt '80%'"/>progress-warning
+													<else />progress-danger
+													</if> active" style="margin-bottom:0px">
+													<div style="width: {$vo[rate_i]};" class="bar"></div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td style="text-align: center"><span class="label label-important">外</span></td>
+											<td style="text-align: center">{$vo[rate_o]} ({$vo[bug_o]}/{$vo[manhour]})</td>
+											<td>
+												<div class="progress progress-striped 
+													<if condition="$vo[rate_o] egt '90%'">progress-success
+													<elseif condition="$vo[rate_o] egt '80%'"/>progress-warning
+													<else />progress-danger
+													</if> active" style="margin-bottom:0px">
+													<div style="width: {$vo[rate_o]};" class="bar"></div>
+												</div>
+											</td>
+										</tr>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-time"></i>
+							</span>
+							<h5>进度</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="10%">项目组</th>
+										<th width="15%">按时发布率</th>
+										<th>按时发布率展示</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="ReleaseList" id="vo">
+										<tr>
+											<td style="text-align: center">{$vo[team]}</td>
+											<td style="text-align: center">{$vo[rate]} ({$vo[delay]}/{$vo[all]})</td>
+											<td>
+												<div class="progress progress-striped 
+													<if condition="$vo[rate] egt '90%'">progress-success
+													<elseif condition="$vo[rate] egt '80%'"/>progress-warning
+													<else />progress-danger
+													</if> active" style="margin-bottom:0px">
+													<div style="width: {$vo[rate]};" class="bar"></div>
+												</div>
+											</td>
+										</tr>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-user"></i>
+							</span>
+							<h5>培训</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="15%">部门</th>
+										<th width="25%">提供培训次数</th>
+										<th width="25%">员工参加培训的次数</th>
+										<th width="25%">贡献知识库词条数</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="ExecutionList" id="vo">
+										<tr>
+											<td style="text-align: center">{$vo[department]}</td>
+											<td style="text-align: center">{$vo[rate]} ({$vo[finish]}/{$vo[all]})</td>
+											<td style="text-align: center">{$vo[rate]} ({$vo[finish]}/{$vo[all]})</td>
+											<td style="text-align: center">{$vo[rate]} ({$vo[finish]}/{$vo[all]})</td>
+										</tr>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

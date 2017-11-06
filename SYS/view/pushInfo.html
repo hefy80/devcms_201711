@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实验室-消息推送</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+</style>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/public.js"></script>
+
+<script>
+
+</script>
+
+</head>
+
+<body>
+<ul class="new_file" id="new_file">
+	<strong><span>消息平台主要内容</span></strong>
+	 <li><span class="new_file_name">接口类型FLAG：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" value="2(固定值)"  disabled name="filename1" id="pluginType" /></span></li>
+	  <li><span class="new_file_name">消息编号ID&nbsp;&nbsp;：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" value="0"  disabled name="filename1" id="pluginType" /></span></li>
+ <li><span class="new_file_name">消息内容MSG_CONTENT：</span><span><input class="fileNameinput" type="text" value="见MSG_CONTENT"  disabled name="filename1" id="pluginType" /></span></li>
+    <li><span class="new_file_name">消息标题MSG_NAME</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span class="new_file_name">消息类型MSG_TYPE：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span class="new_file_name">优先级PRIORITY：</span><span><input class="fileNameinput" type="text" name="filename1" value="0"  disabled id="filename1" /></span></li>
+	<li><span class="new_file_name">接收方编码RECEIVER：</span><span><input class="fileNameinput" type="text" name="filename1" value="YDAPP"  disabled id="filename1" /></span></li>
+	<li><span class="new_file_name">备注REMARK：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span>所属网段SEGMENT：</span>
+		<span>
+			<input type="radio" id="yes" name="network" value="1"/>
+			<label for="yes" class="label"  >内网</label>
+			<input type="radio" id="nay" name="network" checked value="0"/>
+			<label for="nay" class="label">外网</label>
+		</span>
+	</li>
+	<li><span class="new_file_name">消息时效TIMELIMIT：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span class="new_file_name">发送方唯一ID p_PARA：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span class="new_file_name">发送时间p_TIME：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+	<li><span class="new_file_name">接收方唯一ID s_PARA：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>   
+</ul>
+<ul class="new_file" id="new_file">
+<strong><span>交互平台MSG_CONTENT主要内容</span></strong>
+<li><span class="new_file_name">消息内容content：</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">发送时间sendTime：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">消息种类type：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+
+<li><span class="new_file_name">应用编码appcode：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">更新消息版本version：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">address：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">操作类型pushtype：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li>
+	<span>消息种类msgflg：</span>
+		<span>
+			<input type="radio" id="ordinary" name="msgflg" checked value="1"/>
+			<label class="label"  >普通消息</label>
+			<input type="radio" id="update" name="msgflg" value="2"/>
+			<label for="nay"class="label">更新消息</label>
+			<input type="radio" id="other" name="msgflg" value="3"/>
+			<label for="nay"class="label">其他</label>
+		</span>
+</li>
+
+<li><span class="new_file_name">消息的子消息头subtitle：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">消息的子跳转地址suburl：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">用户users：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">服务代码serviceNum：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li><span class="new_file_name">应用扩展代码serviceExtNum：&nbsp;&nbsp;</span><span><input class="fileNameinput" type="text" name="filename1" id="filename1" /></span></li>
+<li>
+	<span>用户类型usertype：</span>
+		<span>
+			<input type="radio" id="internal" name="usertype" checked value="1"/>
+			<label class="label"  >内部用户</label>
+			<input type="radio" id="external" name="usertype" value="2"/>
+			<label for="nay"class="label">外部用户</label>
+		</span>
+</li>
+
+<li>
+	<span>优先级priority：</span>
+		<span>
+			<input type="radio" id="low" name="priority" value="1"/>
+			<label class="label"  >低</label>
+			<input type="radio" id="cent" name="priority" value="2"/>
+			<label for="nay"class="label">中</label>
+			<input type="radio" id="high" name="priority" checked value="3"/>
+			<label for="nay"class="label">高</label>
+		</span>
+</li>
+</ul>
+</body>
+</html>

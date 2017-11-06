@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>对外支撑服务</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-eye-open"></i>
+							</span>
+							<h5>二线</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>年</th>
+										<th>月</th>
+										<th>数量</th>
+										<th>平均响应时长</th>
+										<th>平均解决时长</th>
+										<th width="50%">详情</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$y = $m = 0;
+										foreach ($Line2 as $k => $v){
+											foreach ($v['stat'] as $km => $vm){
+												echo "<tr>";
+												if ($y != $k){
+													$y = $k;
+													echo "<td rowspan=\"".$v['count']."\">".$k."</td>"; //年
+												}
+												echo "<td>".$km."</td>"; //月
+												echo "<td>".($vm['count'] ? $vm['count'] : 0)."</td>";
+												echo "<td>".(($vm['resptimeall']>0 && $vm['count']>0) ? round($vm['resptimeall']/$vm['count']/3600,2) : 0)."</td>";
+												echo "<td>".(($vm['donetimeall']>0 && $vm['count']>0) ? round($vm['donetimeall']/$vm['count']/3600,2) : 0)."</td>";
+												echo "<td>";
+												foreach ($vm['list'] as $kl => $vl){
+													$color = $vl['time'] <= 2 ? "DarkGray" : ($vl['time'] <= 8 ? "Chocolate" : "red");
+													echo "<a href=\"http://192.168.92.177/zentao/story-view-".$vl['id'].".html\" target=\"_blank\">".$vl['id']."</a>(<font color=\"".$color."\">".$vl['time']."</font>)  ";
+												}
+												echo "</td>";
+												echo "</tr>";
+											}
+										}
+									?>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

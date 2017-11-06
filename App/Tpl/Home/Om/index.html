@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>运维工具箱</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+					<?php
+					foreach ($menu as $k=>$v)
+					{?>
+						<div class="widget-box" style="text-align: center;">
+							<div class="widget-title">
+								<h5><?php echo $k ?></h5>
+							</div>
+							<div class="widget-content">
+								<ul class="quick-actions">
+									<?php
+									foreach ($v as $kk=>$vv)
+									{?>
+										<li>
+											<a 
+												<?php
+												echo "href=\"".$vv['url']."\">";
+												echo "<i class=\"".$vv['icon']."\"></i>";
+												echo $kk; 
+												?>
+											</a>
+										</li>
+									<?php
+									}?>
+								</ul>
+							</div>
+						</div>
+					<?php
+					}?>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

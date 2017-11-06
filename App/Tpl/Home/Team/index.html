@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+					<div class="span12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<ul class="breadcrumb">
+									<li><a href="__ACTION__/">啪呗</a></li>
+									<volist name="DeptPath" id="vo">
+										<li <if condition="$dept eq $vo[id]">class="active"</if>>
+											<span class="divider">/</span>
+											<a href="__ACTION__/dept/{$vo[id]}">{$vo[name]}</a> 
+										</li>
+									</volist>
+								</ul>
+							</div>
+							<if condition="$DeptNum gt 0">
+								<div class="span12 center" style="text-align: center;">
+									<ul class="quick-actions-horizontal">
+										<volist name="Depts" id="vo">
+										<li>
+											<a href="__ACTION__/dept/{$vo[id]}">
+												<i class="icon-people"></i>
+												<span>{$vo[name]}</span>
+											</a>
+										</li>
+										</volist>
+									</ul>
+								</div>
+							</if>
+							<div class="widget-content nopadding">
+								<table class="table table-bordered data-table">
+									<thead>
+										<tr>
+										<th>部门</th>
+										<th>账号</th>
+										<th>姓名</th>
+										<th>邮箱</th>
+										<th>分机</th>
+										<th>手机</th>
+										<!--th>加入时间</th-->
+										</tr>
+									</thead>
+									<tbody>
+										<volist name="Users" id="vo">
+											<tr class="gradeA">
+												<td class="center">
+												<volist name="vo.deptpath" id="vdp">
+													<if condition="$vdp[id] gt 2">-</if>
+													<a href="__ACTION__/dept/{$vdp[id]}">
+														{$vdp[name]}
+													</a>
+												</volist>
+												</td>
+												<td>{$vo['account']}</td>
+												<td>{$vo['realname']}</td>
+												<td>{$vo['email']}</td>
+												<td>{$vo['phone']}</td>
+												<td>{$vo['mobile']}</td>
+												<!--td>{$vo['join']}</td-->
+											</tr>
+										</volist>
+									</tbody>
+								</table>  
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.uniform.js"></script>
+		<script src="__PUBLIC__/Tpl/js/select2.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+	</body>
+</html>

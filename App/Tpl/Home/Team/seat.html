@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+					<div class="span12">
+						<div class="widget-box">
+							<div class="widget-title">
+								技术部座位表
+							</div>
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<volist name="Seats[1]" id="vo">
+												<th>{$key}</th>
+											</volist>
+										</tr>
+									</thead>
+									<tbody>
+										<volist name="Seats" id="r">
+											<tr>
+												<volist name="Seats[$key]" id="v">
+													<td style="text-align: center; vertical-align: top">
+														<ul class="site-stats">
+															<li style="text-align: left; background-color: #55F5F5"><i class="icon-user"></i><br>{$v}</small></li>
+														</ul>
+													</td>
+												</volist>
+											</tr>
+										</volist>
+									</tbody>
+								</table>							
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.uniform.js"></script>
+		<script src="__PUBLIC__/Tpl/js/select2.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

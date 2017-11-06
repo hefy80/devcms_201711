@@ -1,0 +1,36 @@
+body{background:#fff;color:#0a7e81}
+
+.l{color:#0a7e81}
+.tlist{border-left:1px solid #c2c9cf;border-top:1px solid #c2c9cf;}
+.tlist td,.tlist th{border-right:1px solid #c2c9cf;border-bottom:1px solid #c2c9cf;}
+.tlist th{background:#efefef;}
+.tlist1{border-left:1px solid #c2c9cf;border-top:1px solid #c2c9cf;border-right:1px solid #c2c9cf;}
+.tlist1 td,.tlist1 th{border-bottom:1px solid #c2c9cf;}
+.tlist .xx{background:#F5F5F5;}
+a.button{
+	border: 1px solid #0a7e81;
+	color: #0a7e81;
+}
+a.button:active{
+	border:1px solid #0a7e81;color:#fff;
+	background:#0a7e81;
+}
+a.button_active{
+	border:1px solid #0a7e81;color:#fff;
+	background:#0a7e81;
+}
+
+.ctlist{
+	border:1px solid #0a7e81;
+	color:#0a7e81;
+	background:#fff;
+}
+.ctlist li:hover,.ctlist li:active{
+	color:#fff;
+	background:#0a7e81;
+}
+
+.ctbtn{
+	border: 1px solid #0a7e81;
+	color:#0a7e81;
+}

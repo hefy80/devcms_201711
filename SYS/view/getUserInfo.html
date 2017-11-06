@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+	<head>
+		<meta content="width=device-width,user-scalable=no" name="viewport" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<title>实验室-基础接口</title>
+		<script src="../js/jquery-1.9.1.min.js" /></script>
+		<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+		<script src="../js/public.js"></script>
+		<link href="../style/basePluginCss.css" rel="stylesheet" />
+		<script type="text/javascript">
+		//设置js方法调用的父对象为mam
+
+		function onDeviceReady(){
+			
+						
+		}
+			var mam = {navigator:navigator};
+			//前往页面
+			function toPage(target)
+		 	{
+				try{
+				
+				var id = target.id;
+		  		var strHref = "";
+				var device = window.device;
+				var devicePlatform = device.platform;
+
+				}catch(ex)
+				{
+					alert(ex.message);
+				}
+				
+
+
+				if(id=="getUserInfo")
+				 {
+				 	if("iOS" == devicePlatform){
+						//调用：
+						console.log("iOS");
+						mam.navigator.loadconfig.getUserInfo(getUserInfoCallback);
+
+				    } else 
+					{
+						//Adroid调用：	
+						
+						try{
+						console.log("Android");
+				
+						mam.navigator.loadconfig.getUserInfo(1,getUserInfoCallback);
+						function getUserInfoCallback(obj)
+							{
+								
+								//nameCode=obj.nameCode;
+								//areaId = obj.areaId;
+								//userId=obj.userId;
+								//name=obj.name;
+								//baseOrgId=obj.baseOrgId;
+								//baseOrgName=obj.baseOrgName;
+										 
+								console.log("getUserInfo插件调用成功:" + JSON.stringify(obj) );
+
+								alert("getUserInfo插件调用成功:" + JSON.stringify(obj) );
+							}
+						}catch(ex){
+						alert(ex.message);
+						}
+						
+
+					}		
+	
+				}	else if(id == "loginSession")
+				{
+					alert("id= "+id);
+					mam.navigator.loadconfig.loginsession('1', getInfoCallback);
+				}
+
+//				 else if(id == "check_getUserInfo")
+//				 {
+//				 	strHref = "codeView.html?list=0";
+//				 } 
+//				 {
+//					 alert("2");
+//				 }
+				  //self.location = strHref;
+		  	}
+			function getInfoCallback(obj)
+			{
+				//consNo=obj.consNo;				
+				//consName = obj.consName;
+				//elecAddr=obj.elecAddr;
+				//alert("loginSession     consNo: "+consNo+"  consName: "+consName+"  //elecAddr: "+elecAddr);
+				console.log("loginSession返回值："+ JSON.stringify(obj));
+				alert("loginSession返回值："+ JSON.stringify(obj));
+			}
+
+			function successCallback(v)
+			{
+					var json = JSON.stringify(v);
+
+					alert("getJson插件调用成功: "+json);
+			}
+					
+		 	//getUserInfoCallback调用回调
+			function getUserInfoCallback(obj)
+			{
+				
+				//nameCode=obj.nameCode;
+				//areaId = obj.areaId;
+				//userId=obj.userId;
+				//name=obj.name;
+				//baseOrgId=obj.baseOrgId;
+				//baseOrgName=obj.baseOrgName;
+				 		 
+				console.log("getUserInfo插件调用成功:" + JSON.stringify(obj) );
+
+				alert("getUserInfo插件调用成功:" + JSON.stringify(obj) );
+			}
+		</script>
+	</head>
+
+	<body>
+		<!--*****************************getUserInfo********************-->
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">getUserInfo</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">获取移动门户用户登录账号信息</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td width="15%">&nbsp;</td>
+					<td width="40%">
+						<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+							<tbody>
+								<tr>
+									<td align="center" height="42" id="getUserInfo" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="45%">
+						<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+							<tr>
+								<td align="center" height="42" id="check_getUserInfo" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<!--*****************************messageInfo********************-->
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">messageInfo</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">获取启动时候的消息内容和参数</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td width="15%">&nbsp;</td>
+					<td width="40%">
+						<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+							<tbody>
+								<tr>
+									<td align="center" height="42" id="messageInfo" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="45%">
+						<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+							<tr>
+								<td align="center" height="42" id="check_messageInfo" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+<!--**************************************loginSession-->
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">loginSession</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">获取外部用户默认绑定账号信息</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="loginSession" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="loginSession" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--**************************************getBindingUserInfos-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">getBindingUserInfos</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">获取绑定的用电户号列表</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="getBindingUserInfos" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_getBindingUserInfos" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!--**************************************getAccountNumber-->
+		<br>
+		<div>
+			<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+						<td class="BK3" id="latitude" width="16%">getAccountNumber</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+						<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+						<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+						<td class="BK3" id="latitude" width="16%">一点通</td>
+					</tr>
+					<tr>
+						<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+						<td class="BK3" colspan="5" id="longitude">获取注册的手机号或设备号</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td width="15%">&nbsp;</td>
+						<td width="40%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tbody>
+									<tr>
+										<td align="center" height="42" id="getAccountNumber" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="45%">
+							<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+								<tr>
+									<td align="center" height="42" id="check_getAccountNumber" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

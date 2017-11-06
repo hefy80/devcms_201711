@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Knowledge下载打开</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="content-type" content="text/html;">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+ 
+
+    <script type="text/javascript">
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+        // 移动交互平台加载完毕
+        function onDeviceReady() {
+            startWatch();
+        }
+		function startWatch()
+		{
+			 alert("hello");
+		}
+
+		var url = "https://mam1.ft-power.com.cn:10013/html4/download/record_1468402625000.wav";
+		 //http://localhost:8080/epriWPPV/download.action?fileName=1465642181858.txt
+		 //successCallback 成功回调 状态码？
+		 //errorback 失败回调 状态码？
+		 //datasrc  下载url （可以在网页中打开并下载文件）
+		 //"downvideo/"  文件保存本地路径
+		 //"测试下载插件视频.mp4"  文件保存本地文件名称
+		 //"NEWS"  应用编码
+		 //"DOWNVIDEO" 应用服务编码
+		  function download2() {			
+			alert("down下载video.wav");
+			mam.navigator.down.down(successCallback, errorback, url, "downdocument1/", "video.wav", "WZQGYL", "WZAPP");
+        }
+
+		
+		function downloadFileByUrl() {
+			 alert("downloadFileByUrl下载video.wav");
+			 var type = "1";
+			 
+			mam.navigator.downloadfilebyurl.downloadFileByUrl(successCallback, errorCallback, "CC", "video.wav", type, url, getcallback);
+		 }
+		 function getcallback() {
+			 alert("downloadFileByUrl    getcallback");			
+		}
+
+		function successCallback(v) {
+				alert("下载下载成功：" + JSON.stringify(v));
+				openfile();
+		}
+		function errorback(v) {
+			alert("下载下载失败：" + JSON.stringify(v));
+		}
+
+	function openfile()
+	 {
+		 alert("openByThirdPartyApp 打开文件");
+		mam.navigator.down.openByThirdPartyApp(succallback, errorcallback, "downdocument1/video.wav");
+	 }
+	 function succallback(v)
+	{
+		alert("openByThirdPartyApp成功" + JSON.stringify(v));
+	}
+	function errorcallback(v)
+	{
+		alert("openByThirdPartyApp失败" + JSON.stringify(v));
+	}
+
+
+
+function checkDri()
+{
+	var device = window.device;
+
+	var devicePlatform = device.platform;
+	alert("设备消息 "+devicePlatform);
+}
+
+function getIOS()
+{
+	mam.navigator.loadconfig.getUserInfo(getUserInfoCallback);
+
+}
+function getAndroid()
+{
+	mam.navigator.loadconfig.getUserInfo(1,getUserInfoCallback);
+
+}
+//getUserInfoCallback调用回调
+function getUserInfoCallback(obj)
+{
+	
+	nameCode=obj.nameCode;
+	areaId = obj.areaId;
+	userId=obj.userId;
+	alert("getUserInfo插件调用成功: 统一框架登录名: "+nameCode+"节点编号: "+ areaId+"用户id: "+userId);
+}
+
+
+
+//getUserInfoCallback调用回调
+function postJSONT()
+{
+	 alert("11:");	  
+}
+
+
+    </script>
+</head>
+<body >
+  
+<div>
+  
+    <input type='button' onclick='download2()' value='下载文件并打开'></input>	   
+    <input type='button' onclick='openfile()' value='openByThirdPartyApp打开文件'></input>
+	<input type='button' onclick='downloadFileByUrl()' value='downloadFileByUrl（需测试）'></input>
+
+<br>
+<br>
+<br>
+	 <input type='button' onclick='checkDri()' value='查看设备系统'></input>
+	 <input type='button' onclick='getIOS()' value='IOS获取用户信息getUserInfo'></input>
+	 <input type='button' onclick='getAndroid()' value='Android获取用户信息getUserInfo'></input>
+
+<br>
+<br>
+<br>
+	 	 <input type='button' onclick='postJSONT()' value='postJSONT插件测试'></input>
+
+
+</div>
+</body>
+</html>
+
+
+

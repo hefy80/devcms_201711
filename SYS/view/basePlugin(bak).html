@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta content="width=device-width,user-scalable=no" name="viewport" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>实验室-基础接口</title>
+	<script src="../js/jquery-1.9.1.min.js"/></script>		
+	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+	<script src="../js/public.js"></script>
+	<link href="../style/basePluginCss.css" rel="stylesheet" />
+	<script type="text/javascript">
+			//前往页面
+			function toPage(target)
+		 	{
+				var id = target.id;
+		  		var strHref = "";
+		  		if(id=="getUserInfo")
+				 {
+				 	mam.navigator.loadconfig.getUserInfo(1,getInfoCallback);
+				 }
+				 else if(id == "check_getUserInfo")
+				 {
+				 	strHref = "codeView.html?list=0";
+				 } else if(id == "loginSession")
+				 {
+				 	
+				 	mam.navigator.notification.alert(
+                    'You are the winner!',  // 显示信息
+                    alertDismissed,         // 警告被忽视的回调函数
+                    'Game Over',            // 标题
+                    'Done'                  // 按钮名称
+          				  );
+					alert("门户无效果，请查看示例!");
+				 } else if(id == "getJSON")
+				 {
+					 alert("2");
+				 	mam.navigator.ajax.get('WNL','','wnlhellow', successCallback);		 
+				 }
+				 
+				  self.location = strHref;
+		  	}
+				function successCallback(v){
+			alert(v.result.value);
+				var mettingmess = v.result;
+				for (var i = 0; i < mettingmess.length; i++) {
+						alert(mettingmess[i].result);
+					}			
+			
+			}
+		 	//插件调用回调
+			function getInfoCallback(obj)
+			{
+				alert('插件成功调用！');
+				nameCode=obj.nameCode;
+				areaId = obj.areaId;
+				userId=obj.userId;
+				alert("统一框架登录名: "+nameCode+"节点编号: "+ areaId+"用户id: "+userId);
+			}
+			//添加表格    *******************暂时放弃*******************
+			 function addtab(r,c) { //创建r行c列的表格
+		        var odiv = document.getElementById("tab");
+		        var oTable = document.createElement("table");
+		        oTable.setAttribute("border", 1, 0);
+		        oTable.setAttribute("width", "100%");
+		        oTable.setAttribute("height", "40");
+		        for (i = 0; i < 3; i++) {
+		            var tr = oTable.insertRow();
+		            //for (j = 0; j < 2; j++) {
+		            for (j = 0; j < 6; j++) {
+		                var td = tr.insertCell();
+		                if(i==2 && j==5)
+		                {
+		                	td.setAttribute("align","center");
+		                	td.setAttribute("bgcolor","#0a7e81");
+		                	td.setAttribute("height","42");
+		                	td.setAttribute("width","16%");
+		                	td.setAttribute("bgcolor","#0a7e81");
+		                	td.setAttribute("id","TD25");
+		                	
+		                	/*var sp=td.document.createElement("span");
+		                	sp.setAttribute("class","STYLE2");
+		                	sp.innerHTML = "插件名称"; */
+		                	addIF();
+		                }
+		               // td.innerHTML =  i + "行" + j + "列";                         
+		            }
+		            
+		        }
+		        odiv.appendChild(oTable);
+		       }
+			 function addIF() { //创建r行c列的表格
+			 	var oTID = document.getElementById("TD25");
+		       /* 
+		        var oTSP = document.createElement("span");
+		        oTSP.setAttribute("class","STYLE2");
+		        oTSP.innerHTML = "插件名称"; 
+		         oTID.appendChild(oTSP);*/
+		        alert(oTID); 
+		        
+		       }
+			 
+			 
+			 
+			 
+			 
+
+        // 警告对话框被忽视
+        function alertDismissed() {
+            // 进行处理
+            alert("alert 插件提示1");
+        }
+
+        // 显示一个定制的警告框
+        function showAlert() {
+            mam.navigator.notification.alert(
+                    'You are the winner!',  // 显示信息
+                    alertDismissed,         // 警告被忽视的回调函数
+                    'Game Over',            // 标题
+                    'Done'                  // 按钮名称
+            );
+        }
+        
+		// 处理确认对话框返回的结果
+        function onConfirm(button) {
+            alert('confirm 提示 ；You selected button ' + button);
+        }
+
+        // 显示一个定制的确认对话框
+        function showConfirm() {
+            mam.navigator.notification.confirm(
+                    'You are the winner!',  // 显示信息
+                    onConfirm,              // 按下按钮后触发的回调函数，返回按下按钮的索引
+                    'Game Over',            // 标题
+                    'Restart,Exit'          // 按钮标签
+            );
+        }
+
+		</script>
+</head>
+<body>
+	<!--
+	<div id="tab">
+<table id="tabB" border="0" cellpadding="1" class="BK" cellspacing="1" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK2"  style='font-family: '黑体';color: #FFFFFF;' height="42" width="16%">插件名称</td>
+			<td class="BK3" id="latitude" width="16%">getUserInfo</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+			<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+			<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述</span></td>
+			<td class="BK3" colspan="5" id="longitude">获取登录的账号以及token信息</td>
+		</tr>
+		<tr>
+			<td class="BK3" colspan="3" rowspan="1" valign="middle" align="center">
+				<table border="0" bgcolor="#0a7e81" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="50%">
+						<tr>
+							<td height="42" id="" onclick="toPage(this)" style="text-align: center;"><span class="STYLE4">效果查看</span></td>
+						</tr>
+				</table>
+			</td>
+			<td class="BK3" colspan="3" rowspan="1" valign="middle" align="center">
+				<table border="0" bgcolor="#0a7e81" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="50%">
+						<tr>
+							<td height="42" id="" onclick="addtab(3,6);" style="text-align: center;"><span class="STYLE4">效果查看</span></td>
+						</tr>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>-->
+<!--**************************************getUserInfo-->
+<div>
+<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+			<td class="BK3" id="latitude" width="16%">getUserInfo</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+			<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+			<td class="BK3" id="latitude" width="16%">门户</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+			<td class="BK3" colspan="4" id="longitude">获取内部用户登录账号信息</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+		<tr>
+			<td width="15%">&nbsp;</td>
+			<td width="40%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+				<tbody>
+					<tr>
+						<td align="center" height="42" id="getUserInfo" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td width="45%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+					<tr>
+						<td align="center" height="42" id="check_getUserInfo" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+					</tr>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!--**************************************messageInfo-->
+<br>
+<div>
+<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+			<td class="BK3" id="latitude" width="16%">getJSON</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+			<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+			<td class="BK3" id="latitude" width="16%">门户、一点通</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+			<td class="BK3" colspan="4" id="longitude">获取外部用户默认绑定账号信息</td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+		<tr>
+			<td width="15%">&nbsp;</td>
+			<td width="40%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+				<tbody>
+					<tr>
+						<td align="center" height="42" href="javascript:void(0);" id="getJSON" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td width="45%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+					<tr>
+						<td align="center" height="42" href="javascript:void(0);" id="check_messageInfo" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+					</tr>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<!--**************************************loginSession-->
+<br>
+<div>
+<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">方法名</span></td>
+			<td class="BK3" id="latitude" width="16%">loginSession</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用系统</span></td>
+			<td class="BK3" id="latitude" width="16%">IOS、Android</td>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="16%"><span class="STYLE2">适用平台</span></td>
+			<td class="BK3" id="latitude" width="16%">一点通</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="16%"><span class="STYLE2">功能描述：</span></td>
+			<td class="BK3" colspan="4" id="longitude">获取外部用户默认绑定账号信息</td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+		<tr>
+			<td width="15%">&nbsp;</td>
+			<td width="40%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+				<tbody>
+					<tr>
+						<td align="center" height="42" href="javascript:void(0);" id="loginSession" onclick="toPage(this)"><span class="STYLE4">效果查看</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td width="45%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+					<tr>
+						<td align="center" height="42" href="javascript:void(0);" id="check_loginSession" onclick="toPage(this)"><span class="STYLE4">调用示例</span></td>
+					</tr>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>

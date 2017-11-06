@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta content="width=device-width,user-scalable=no" name="viewport" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>实验室-代码实例</title>
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<style type="text/css">
+	</style>
+	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+	<script src="../js/public.js"></script>
+	<script src="../js/stringFile.js"></script>
+	<style type="text/css">body {
+	background-color: #E8F6F7;
+}
+.STYLE2 {
+	font-family: "黑体";
+	color: #FFFFFF;
+}
+.STYLE4 {color: #FFFFFF; font-weight: bold; font-family: "黑体"; font-size: 14pt; }
+.BK {
+	border: 1px solid #0A7E81;
+}
+.BK2 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: none;
+	border-left-style: solid;
+	border-top-color: #E8F6F7;
+	border-right-color: #E8F6F7;
+	border-left-color: #E8F6F7;
+}
+.BK3 {
+	border-bottom-width: 1px;
+	border-bottom-style: none;
+	border-bottom-color: #0A7E81;
+	border-top-width: 1px;
+	border-top-style: dashed;
+	border-top-color: #0A7E81;
+}
+.BK4 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-bottom-color: #E8F6F7;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #E8F6F7;
+	border-left-color: #E8F6F7;
+	border-right-color: #E8F6F7;
+}
+.textareaStyle1{min-height:40px;border:1px solid #88b8b9;color:#0a7e81;padding:8px;-webkit-box-sizing:border-box;box-sizing:border-box; line-height:120%;width:100%;}
+	</style>
+	<script type="text/javascript">
+	var acid=0;
+	function changeInfo(msgX)
+ 	{
+ 		//var msga = msg[0][0];
+        document.getElementById("methodID").innerHTML = msg[msgX][0];
+        document.getElementById("funcID").innerHTML = msg[msgX][1];
+        document.getElementById("explain").innerHTML = msg[msgX][2];
+        document.getElementById("example").innerHTML = msg[msgX][3];
+ 	}
+// 	("list");
+
+	//获取上一页面传递来的参数
+	function getValue()
+	{
+		var args = new Object();
+		args = GetUrlParms();
+		//如果要查找参数key:
+		if(args["list"]!=undefined)
+		{
+			//如果要查找参数key:
+			var value1 = args["list"] ;
+			changeInfo(value1);
+		}
+	}
+
+</script>
+</head>
+<body onload="getValue();">
+<div>
+<table bgcolor="#ffffff" border="0" bordercolor="#e8f6f7" cellpadding="0" cellspacing="0" class="BK" height="100%" width="100%">
+	<tbody>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK2" height="42" width="5%"><span class="STYLE2">方法名</span></td>
+			<td class="BK3" id="methodID" width="10%"></td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="5%"><span class="STYLE2">功能描述：</span></td>
+			<td class="BK3" colspan="4" id="funcID"></td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#0a7e81" class="BK4" height="42" width="5%"><span class="STYLE2">API说明：</span></td>
+			<td class="BK3" colspan="4" id="explain">
+				
+			</td>
+		</tr>
+		<tr height="40">
+			<td align="center" bgcolor="#0a7e81" class="BK4" width="5%"><span class="STYLE2">调用示例：</span></td>
+			<td class="BK3" colspan="4" id="example">
+				
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+		<tr> 
+			<td width="30%">&nbsp;</td>
+			<td width="40%">
+			<table bgcolor="#0a7e81" border="1" bordercolor="#ffffff" cellpadding="0" cellspacing="0" width="130">
+				<tbody>
+					<tr>
+						<td align="center" height="42" href="javascript:void(0);" id="back" onClick="javascript :history.back(-1);"><span class="STYLE4">返回</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

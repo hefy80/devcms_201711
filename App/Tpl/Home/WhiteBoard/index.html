@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+					<div class="widget-box">					
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-eye-open"></i>
+							</span>
+							<h5>{$Project['name']}</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<ul class="stat-boxes">
+								<li>
+									<div class="left peity_line_good"><span>30,34,25,13,8,5,0</span>燃尽图</div>
+									<div class="right">
+										<strong>5</strong>
+										剩余天数
+									</div>
+								</li>
+							</ul>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th width="15%">User Story</th>
+										<th width="30%">To Do</th>
+										<th width="20%">In Progress</th>
+										<th width="15%">Verify</th>
+										<th>Done</th>
+									</tr>
+								</thead>
+								<tbody>
+									<volist name="StoryTree" id="vo">
+										<tr>
+											<td style="text-align: center; vertical-align: top">
+												<ul class="site-stats">
+													<li style="text-align: left; background-color: #55F5F5"><i class="icon-user"></i><br>{$vo['story']['title']}</small></li>
+												</ul>
+											</td>
+											<td style="text-align: left; vertical-align: top">
+												<ul class="site-stats">
+													<volist name="vo.wait" id="vwait">
+													<li style="text-align: left"><i class="icon-arrow-right"></i> <strong>{$vwait['assignedTo']}</strong><br><small>{$vwait['name']}</small></li>
+													</volist>
+												</ul>
+											</td>
+											<td style="text-align: left; vertical-align: top">
+												<ul class="site-stats">
+													<volist name="vo.doing" id="vdoing">
+													<li style="text-align: left"><i class="icon-arrow-right"></i> <strong>{$vdoing['assignedTo']}</strong><br><small>{$vdoing['name']}</small></li>
+													</volist>
+												</ul>
+											</td>
+											<td style="text-align: left; vertical-align: top">
+												<ul class="site-stats">
+													<volist name="vo.done" id="vdone">
+													<li style="text-align: left"><i class="icon-arrow-right"></i> <strong>{$vdone['assignedTo']}</strong><br><small>{$vdone['name']}</small></li>
+													</volist>
+												</ul>
+											</td>
+											<td style="text-align: left; vertical-align: top">
+												<ul class="site-stats">
+													<volist name="vo.closed" id="vclosed">
+													<li style="text-align: left"><i class="icon-arrow-right"></i> <strong>{$vclosed['finishedBy']}</strong><br><small>{$vclosed['name']}</small></li>
+													</volist>
+												</ul>
+											</td>
+										</tr>
+									</volist>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

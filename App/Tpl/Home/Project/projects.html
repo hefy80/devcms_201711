@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div id="content-header">
+				<h1>项目列表</h1>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="widget-box">					
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<?php
+											foreach ($projects[0] as $k=>$v)
+											{
+												echo "<th>".$k."</th>";
+											}
+										?>
+										<th>分析</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										foreach ($projects as $k=>$v)
+										{
+											echo "<tr>";
+											foreach ($v as $kk=>$vv)
+											{
+												echo "<td>";
+												if ($kk=='编号' || $kk=='名称')
+												{
+													echo "<a href=\"http://192.168.92.177/zentao/project-view-".$v['编号']."html\" target=\"_blank\">".$vv."</a>";
+												}
+												else if ($kk=='状态')
+												{
+													switch ($vv) 
+													{
+														case '未启动':
+															echo "<span class=\"label\">".$vv."</span>";
+															break;
+														case '提前启动':
+														case '正常':
+															echo "<span class=\"label label-success\">".$vv."</span>";
+															break;
+														case '预估人时不足':
+														case '缓慢':
+														case '缓慢，人时已超':
+															echo "<span class=\"label label-warning\">".$vv."</span>";
+															break;
+														case '延迟，人时还剩':
+														case '延迟，人时已超':
+															echo "<span class=\"label label-important\">".$vv."</span>";
+															break;
+														case '异常':
+															echo "<span class=\"label label-inverse\">".$vv."</span>";
+															break;
+														default:
+															echo $vv;
+													}
+												}
+												else 
+												{
+													echo $vv;
+												}
+												echo "</td>";
+											}
+											echo "<td>";
+											echo "<a href=\"http://192.168.92.177/zentao/project-kanban-".$v['编号']."html\" target=\"_blank\"><button class=\"btn\">白板</button></a>";
+											echo "<a href=\"http://192.168.92.177/zentao/project-burn-".$v['编号']."html\" target=\"_blank\"><button class=\"btn btn-danger\">燃尽图</button></a>";
+											echo "<a href=\"http://192.168.92.177/zentao/project-tree-".$v['编号']."html\" target=\"_blank\"><button class=\"btn btn-success\">树图</button></a>";
+											echo "</td></tr>";
+										}
+									?>
+								</tbody>
+							</table>							
+						</div>
+					</div>	
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.gritter.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.peity.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.interface.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

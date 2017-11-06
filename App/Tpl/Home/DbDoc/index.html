@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+	</head>
+	<body>
+		{:W('Head',array(),false)}
+		{:W('SideBar',array(),false)}
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row-fluid" style="margin-top:15px">
+					<div class="span12">
+						<div class="span3 bs-docs-sidebar">
+							<ul class="nav nav-list bs-docs-sidenav affix-top">
+								<volist name="TabIndex" id="vo">
+									<li>
+										<a href="#sec_{$vo}"><i class="icon-chevron-right"></i> {$key}</a>
+									</li>
+								</volist>
+							</ul>
+						</div>
+						<div class="span9">
+							<volist name="TabList" id="vo">
+								<section id="sec_{$key}">
+									<div class="page-header">
+										<h2>{$key}</h2>
+										<p>{$vo['table_comment']}</p>
+									</div>
+									<div id="mod_{$key}" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: none;">
+										<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h3 id="myModalLabel">{$key}</h3>
+										</div>
+										<div class="modal-body">
+										<h4>模态对话框中的文本</h4>
+										</div>
+									</div>
+									<div class="bs-docs-example" style="padding-bottom: 24px;">
+										<a data-toggle="modal" href="#mod_{$key}" class="btn btn-primary btn-large">查看表格详情</a>
+									</div>
+								</section>
+							</volist>
+							<div class="widget-box">
+								<div class="widget-title">
+									<span class="icon">
+										<i class="icon-eye-open"></i>
+									</span>
+									<h5>表名</h5>
+								</div>
+								<div class="widget-content nopadding">
+									<table class="table table-bordered data-table">
+										<thead>
+											<tr>
+											<th>字段名</th>
+											<th>类型</th>
+											<th>非空</th>
+											<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<volist name="ColList" id="vo">
+												<tr class="gradeA">
+													<td>{$key}</td>
+													<td>{$vo['column_type']}</td>
+													<td>{$vo['is_nullable']}</td>
+													<td>{$vo['table_comment']}</td>
+												</tr>
+											</volist>
+										</tbody>
+									</table>  
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					{:W('Foot',array(),false)}
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.uniform.js"></script>
+		<script src="__PUBLIC__/Tpl/js/select2.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	</body>
+</html>

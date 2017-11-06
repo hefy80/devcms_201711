@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- container-fluid -->
+	<head>
+		{:W('Link',array(),false)}
+		<style>
+			p {text-indent: 2em; padding-bottom: 10px; line-height: 1.5; font-family: 'MicroSoft YaHei', 'Courier New', 'Andale Mono', monospace;}
+			li {line-height: 2;}
+		</style>
+	</head>
+	<body>
+		<div id="content" style="margin-left:0px">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="widget-box">
+							{$txt}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var tables = document.getElementsByTagName('table');
+			for (var x in tables) {
+				tables[x].className="table table-bordered";
+			}
+		</script>
+		<script src="__PUBLIC__/Tpl/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/jquery.ui.custom.js"></script>
+        <script src="__PUBLIC__/Tpl/js/jquery.dataTables.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/Tpl/js/unicorn.js"></script>
+        <script src="__PUBLIC__/Tpl/js/unicorn.tables.js"></script>
+	</body>
+</html>
